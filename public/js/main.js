@@ -102,7 +102,7 @@ function renderWeather(weather, latitude, longitude) {
   $("#today .humidity").text(weather.humidity+"%")
   $("#today .wind").text(weather.wind.speed+" m/s ")
   $("#today .temp .high").text("MAX "+weather.high+"°")
-  $("#today .temp .low").text("MIN "+weather.low+"°").attr("src","img/icone/nuvoloso.png")
+  $("#today .temp .low").text("MIN "+weather.low+"°")
 
   showSection("home")
 

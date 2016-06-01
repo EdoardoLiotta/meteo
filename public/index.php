@@ -73,7 +73,7 @@
                             <li class="low"></li>
                           </ul>
                         </div>
-                        <div class="humidity"><img src="img/icone/nuvoloso.png"></div>
+                        <div class="humidity"></div>
                         <div class="wind"></div>
                       </div>
                     </div>

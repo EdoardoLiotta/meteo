@@ -223,23 +223,51 @@ body.section-info .link-info{
 }
 
 .weather-1 .weather-icon{
-  background-image: url("../img/icone/nuvoloso.png")
+  background-image: url("../img/icone/sole.png")
 }
 
 .weather-2 .weather-icon{
-  background-image: url("../img/icone/nuvoloso2.png")
+  background-image: url("../img/icone/sole.png")
 }
 
 .weather-3 .weather-icon{
-  background-image: url("../img/icone/nuvoloso3.png")
+  background-image: url("../img/icone/luna.png")
 }
 
 .weather-4 .weather-icon{
-  background-image: url("../img/icone/nuvoloso4.png")
+  background-image: url("../img/icone/nuvoloso.png")
+}
+
+.weather-5 .weather-icon{
+  background-image: url("../img/icone/lunanuvoloso.png")
+}
+
+.weather-6 .weather-icon{
+  background-image: url("../img/icone/nebbia.png")
+}
+
+.weather-7 .weather-icon{
+  background-image: url("../img/icone/nuvoloso.png")
+}
+
+.weather-8 .weather-icon{
+  background-image: url("../img/icone/pioggia.png")
+}
+
+.weather-9 .weather-icon{
+  background-image: url("../img/icone/neve.png")
+}
+
+.weather-10 .weather-icon{
+  background-image: url("../img/icone/neve.png")
+}
+
+.weather-11 .weather-icon{
+  background-image: url("../img/icone/temporale.png")
 }
 
 #dati
-{ 
+{
   position: relative;
   top: -90px;
 }
