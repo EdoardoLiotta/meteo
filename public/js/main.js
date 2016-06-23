@@ -1,5 +1,4 @@
-var debug = true
-
+var debug = false
 
 function init(){
   document.body.addEventListener('touchmove', function(event) {
@@ -10,8 +9,7 @@ function init(){
     getPosition()
   })
 
-
-  // on resize
+  // O N - R E S I Z E
   setTimeout(function(){
     centerElements()
   },500)
@@ -20,7 +18,7 @@ function init(){
     centerElements()
   });
 
-  // SHAKE EVENT
+  // S H A K E - E V E N T
   var myShakeEvent = new Shake({
       threshold: 15, // optional shake strength threshold
       timeout: 1000 // optional, determines the frequency of event generation
@@ -30,7 +28,7 @@ function init(){
 }
 
 
-//function to call when shake occurs
+// function to call when shake occurs
 function reactToShakeEvent () {
   getPosition()
 }
@@ -41,14 +39,13 @@ function showSection(section_id) {
   $("#app section#"+section_id).show()
 
   $("body").attr("class","section-"+section_id)
-  //centerElements()
 }
-
 
 
 function info() {
   showSection("info")
 }
+
 
 function getPosition() {
   showSection("loading")
@@ -76,39 +73,25 @@ function getWeather(latitude,longitude) {
       alert("error: "+error)
     }
   });
-
 }
 
 
 function renderWeather(weather, latitude, longitude) {
-  console.log(weather)
+  //console.log(weather)
 
   var my_code = getOurWeatherCode(weather.code)
   var my_string = getOurWeatherString(my_code)
 
-  // parallax
-  my_code=1 // debug
-  $("#background .layer1 img").attr("src","img/parallax/sfondo"+my_code+"-02.png")
-  $("#background .layer2 img").attr("src","img/parallax/sfondo"+my_code+"-03.png")
-  $("#background .layer3 img").attr("src","img/parallax/sfondo"+my_code+"-04.png")
-  $("#background .layer4 img").attr("src","img/parallax/sfondo"+my_code+"-05.png")
-  $("#background .layer5 img").attr("src","img/parallax/sfondo"+my_code+"-06.png")
-
-
-  // weather
-  //alert(my_string)
+  // W E A T H E R
   $("#today").addClass("weather-"+my_code)
   $("#today .string").text(my_string)
-  $("#today .humidity").text(weather.humidity+"%")
-  $("#today .wind").text(weather.wind.speed+" m/s ")
-  $("#today .temp .high").text("MAX "+weather.high+"°")
-  $("#today .temp .low").text("MIN "+weather.low+"°")
+  $("#today .temp").text(+weather.temp+"°")
+
 
   showSection("home")
 
-  // forecast
-  $("#forecast").html("") // empty #forecast ul
-  //for(var i in weather.forecast) {
+  // F O R E C A S T
+  $("#forecast").html("")
   for(var i=0; i<=3; i++) {
     var forecast = weather.forecast[i]
     var forecast_my_code = getOurWeatherCode(forecast.code)
@@ -122,8 +105,52 @@ function renderWeather(weather, latitude, longitude) {
     html_forecast += '</li>'
 
     $("#forecast").append(html_forecast)
-    console.log(forecast)
+    //console.log(forecast)
   }
+
+/*
+      "1": "sunny",
+      "2": "clear day",
+      "3": "clear night",
+      "4": "cloudy day",
+      "5": "cloudy night",
+      "6": "foggy",
+      "7": "windy",
+      "8": "rainy",
+      "9": "cold",
+      "10": "snow",
+      "11": "tunderstorm"*/
+
+
+
+  var suggestions = {
+    "1":  ["Suli",""],
+    "2":  ["Chi cauru cu suli.",""],
+    "3":  ["chi cauru i sira.",""],
+    "4":  ["grigiu ghiurnau",""],
+    "5":  ["grigiu scurau",""],
+    "6":  ["chi nigghia, a unni semu?",""],
+    "7":  ["Abbulaiu.",""],
+    "8":  ["Scaricau.",""],
+    "9":  ["a lu friddu, giuacciaiu.",""],
+    "10": ["Nivicau.",""],
+    "11": ["Trunau.",""],
+  }
+
+  var suggestion = suggestions[my_code]
+  //console.log(suggestion)
+  // adjust base in temperature
+  var avg_temp = (parseInt(weather.high)+parseInt(weather.low))/2
+
+  $(".testo .frase").hide()
+  $(".testo .frase").text(suggestion[0]).show()
+/*  $("body").css({
+    "background-image": 'url('+suggestion[1]+')' ,
+    "background-repeat": 'no-repeat',
+    "background-size": 'cover'
+  })*/
+
+
 
 
 
@@ -132,27 +159,40 @@ function renderWeather(weather, latitude, longitude) {
   var latlng = {lat: latitude, lng: longitude};
   geocoder.geocode({'location': latlng}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
-      if (results[1]) {
-        console.log(results[1])
-        var city = results[1].formatted_address
-        $("#weather .city").text(city)
+      var string = getLocationString(results)
+      if (string) {
+        $("#weather .city").text(string)
       } else {
-        window.alert('No results found');
+        window.alert('Mbare, ma unni si?');
       }
     } else {
       window.alert('Geocoder failed due to: ' + status);
     }
   });
-
-  /*
-  var map;
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: latitude, lng: longitude},
-    zoom: 15
-  });
-  */
 }
 
+
+function getLocationString(results){
+  var string = false;
+  if(results[0]){
+    var result = results[0];
+    //string = result.formatted_address;
+
+    for(var i=0; i< result.address_components.length; i++){
+      var component = result.address_components[i];
+      if(component.types[0] == "locality" || component.types[0] == "political"){
+        string = component.long_name;
+      }
+
+    }
+  }
+  return string;
+}
+
+
+window.initMap = function(){
+
+}
 
 function showLoadingMessage(message){
   $("#loading-message").text(message)
@@ -160,20 +200,6 @@ function showLoadingMessage(message){
 
 
 function getOurWeatherCode(its_code){
-  /*
-  1	sunny
-  2	clear day
-  3	clear night
-  4	cloudy day
-  5	cloudy night
-  6	foggy
-  7	windy
-  8	rainy
-  9	cold
-  10	snow
-  11	tunderstorm
-  */
-
   var our_codes = {
   "0": "11",
   "1": "11",
@@ -228,6 +254,7 @@ function getOurWeatherCode(its_code){
   return our_codes[its_code]
 }
 
+
 function getOurWeatherString(our_code) {
     var our_strings = {
       "1": "sunny",
@@ -247,13 +274,11 @@ function getOurWeatherString(our_code) {
 
 
 function centerElements(){
-
   $(".centered-holder").each(function(index, element){
     $(this).css({"width": "100%"})
     var x =  $(this).width()/2-$(this).find(".centered").width()/2
     var y =  $(this).height()/2-$(this).find(".centered").height()/2
     if(y<0) y=0
-    console.log("sono dentro "+$(this).attr("id")+", mi sento largo "+$(this).width()+" e alto " +$(this).height()+", sto per centrare gli elementi .centered dentro di me a x: "+x+" e y: "+y)
     $(this).find(".centered").css({
       left: x+"px",
       top: y+"px"

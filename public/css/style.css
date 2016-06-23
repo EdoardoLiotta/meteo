@@ -1,291 +1,132 @@
 html, body{
   height: 100%;
+  font-family: 'Helvetica', sans-serif;
+  color: #000;
+  overflow: hidden;
 }
 
-body {
-  font-family: 'Montserrat', sans-serif;
-}
-
-@font-face {
-    font-family: myFont;
-    src: url(brandon_med_it.otf);
-}
-
-p{
-  font-size: 22px;
-  line-height: 1.5;
-}
-
-.col-sm-12{
+.col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-6, .col-xs-12{
   padding: 0;
-  height: 100%;
-}
-
-.row{
-  margin: 0;
-  height: 100%;
 }
 
 #app {
-  height: calc(100% - 50px);
+  height: 100%;
   margin: 0;
   padding: 0;
 }
 
- #app section {
-   display: none;
-   height: 100%;
-   overflow: hidden;
- }
-
-#app section .item{
-  margin-bottom: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
-}
-
-#app section#home{
-  color: #fff;
-}
-
-#app section#home p{
-  font-size: 17px;
-}
-
-
-#logo img {
-  width: 260px;
-}
-
-
-
-.centered-holder {
-  position: relative;
-}
-
-.centered {
-  position: absolute;
-}
-
-.centered img
-{
-  width: 100%;
-}
-
-
-footer {
-  background-color: #ccc;
-  color: white;
-  position: absolute;
-  bottom: 0px;
-  width: 100%;
-  padding: 5px;
-  text-align: center;
-
-}
-
-footer a {
-  color: rgba(255,255,255,0.6);
-  padding-left: 15px;
-  padding-right: 15px;
-  font-size: 2em;
-}
-
-footer a:hover {
-  color: white;
-  text-decoration: underline;
-}
-
-
-body.section-home .link-home{
+#app section {
   display: none;
-}
-
-
-body.section-info .link-info{
-  display: none;
-}
-
-
-.centered {
-  position: absolute;
-}
-
-#img {
-  width: 100%;
   height: 100%;
-  margin-right: auto;
-  margin-left: auto;
-  position: relative;
+  overflow: hidden;
 }
 
-.box {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-}
-
-
-#home
-{
-  background-color: #5C8BAA;
-
-}
-
-#home .content {
-  position: relative;
+.content {
+  display: table;
+  width: 90%;
   height: 100%;
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 2em 0;
 }
 
-#home .content #background,
-#home .content #weather{
-  position: absolute;
-}
+.content > div {
+  /* vertically align <div> inside <section> */
+  display: table-cell;
+  vertical-align: middle;
+} 
 
-#home .content #background {
-
-}
-
-#home .content #background #scene{
-  margin-left: -20%;
-}
-
-#home .content #weather {
-
-}
-
-#background #scene
-{
-  position: relative;
-  bottom: 130px;
-}
 
 /* WEATHER  */
 
-.weather {
-  text-align: center;
-}
-
-/*.weather-icon {
-  /*border: 1px solid red;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-*/
-#today {
-  width: 300px;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #fff;
-  color: #547F9E;
-  border-radius: 200px;
-  margin-bottom: 100px;
-}
-
 #today .weather-icon {
-  background-size: 100px;
   background-repeat: no-repeat;
-  background-position: center;
-  height: 250px;
-  margin-bottom: 15px;
-}
-
-#forecast {
-  white-space: nowrap;
-  padding: 0;
-  margin-left: 18px;
-}
-
-#forecast li
-{
-  display: inline-block;
-  margin-left: 5px;
-  margin-right: 5px;
-
-}
-
-#forecast .weather-icon {
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 50px;
-  height: 50px;
-
-}
-@media only screen and (min-width: 768px)  {
-  #forecast .weather-icon {
-    width: 100px;
-    height: 100px;
-  }
-}
-
-.weather-1 .weather-icon{
-  background-image: url("../img/icone/sole.png")
-}
-
-.weather-2 .weather-icon{
-  background-image: url("../img/icone/sole.png")
-}
-
-.weather-3 .weather-icon{
-  background-image: url("../img/icone/luna.png")
-}
-
-.weather-4 .weather-icon{
-  background-image: url("../img/icone/nuvoloso.png")
-}
-
-.weather-5 .weather-icon{
-  background-image: url("../img/icone/lunanuvoloso.png")
-}
-
-.weather-6 .weather-icon{
-  background-image: url("../img/icone/nebbia.png")
-}
-
-.weather-7 .weather-icon{
-  background-image: url("../img/icone/nuvoloso.png")
-}
-
-.weather-8 .weather-icon{
-  background-image: url("../img/icone/pioggia.png")
-}
-
-.weather-9 .weather-icon{
-  background-image: url("../img/icone/neve.png")
-}
-
-.weather-10 .weather-icon{
-  background-image: url("../img/icone/neve.png")
-}
-
-.weather-11 .weather-icon{
-  background-image: url("../img/icone/temporale.png")
-}
-
-#dati
-{
-  position: relative;
-  top: -90px;
-}
-
-.temp li
-{
-  display: inline-block;
-  padding-left: 0px;
-
-}
-
-.temp ul {
-  padding: 0;
+  background-position: right;
+  height: 500px;
+  width: 500px;
+  margin: auto;
 }
 
 .city{
-  font-size: 20px;
-  font-weight: 700;
+  text-align: right;
+  font-size: 2em;
+  font-weight: 600;
   position: relative;
-  top: 70px;
 }
+
+.temp{
+  text-align: right;
+  font-size: 2.5em;
+  font-weight: 600;
+  position: relative;
+  letter-spacing: -2px;
+}
+
+.testo{
+  padding-top: 100px;
+  font-size: 3.5em;
+  font-weight: 600;
+  line-height: 1em;
+}
+
+.mbare{
+  color: #ce1313;
+}
+
+.weather-1 .weather-icon{
+  background-image: url("../img/avatar/1.gif")
+}
+
+.weather-2 .weather-icon{
+  background-image: url("../img/avatar/2.gif")
+}
+
+.weather-3 .weather-icon{
+  background-image: url("../img/avatar/3.gif")
+}
+
+.weather-4 .weather-icon{
+  background-image: url("../img/avatar/4.gif")
+}
+
+.weather-5 .weather-icon{
+  background-image: url("../img/avatar/5.gif")
+}
+
+.weather-6 .weather-icon{
+  background-image: url("../img/avatar/6.gif")
+}
+
+.weather-7 .weather-icon{
+  background-image: url("../img/avatar/7.gif")
+}
+
+.weather-8 .weather-icon{
+  background-image: url("../img/avatar/8.gif")
+}
+
+.weather-9 .weather-icon{
+  background-image: url("../img/avatar/9.gif")
+}
+
+.weather-10 .weather-icon{
+  background-image: url("../img/avatar/10.gif")
+}
+
+.weather-11 .weather-icon{
+  background-image: url("../img/avatar/11.gif")
+}
+
+/* INFO SECTION  */
+
+section#loading{
+  text-align: center;
+}
+
+#loading-message{
+  font-size: 3em;
+  font-weight: 600;
+  line-height: 1em;
+}
+
+@import 'variables';
